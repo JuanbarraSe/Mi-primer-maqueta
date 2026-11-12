@@ -1,0 +1,571 @@
+
+/* ==========================================
+   1. VARIABLES DE DISEÑO
+========================================== */
+
+:root {
+    --color-primario: #2563eb;
+    --color-acento: #06b6d4;
+    --color-oscuro: #0f172a;
+    --color-fondo: #f8fafc;
+    --color-texto: #1e293b;
+    --color-blanco: #ffffff;
+    --color-borde: #e2e8f0;
+}
+
+/* ==========================================
+   2. SELECTOR UNIVERSAL
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/* ==========================================
+   3. SELECTOR DE ETIQUETA
+========================================== */
+
+body {
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+p {
+    line-height: 1.7;
+}
+
+/* ==========================================
+   4. SELECTORES DE CLASE
+========================================== */
+
+.menu {
+    background-color: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.menu .nav-link {
+    position: relative;
+    color: #cbd5e1;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* ==========================================
+   5. PSEUDOCLASES DE NAVEGACIÓN
+========================================== */
+
+/* :hover */
+.menu .nav-link:hover {
+    color: var(--color-blanco);
+}
+
+/* :focus */
+.menu .nav-link:focus {
+    color: var(--color-blanco);
+    outline: 2px solid var(--color-acento);
+}
+
+/* :focus-visible */
+.menu .nav-link:focus-visible {
+    outline: 3px solid var(--color-acento);
+    outline-offset: 3px;
+}
+
+/* :active */
+.menu .nav-link:active {
+    color: var(--color-acento);
+}
+
+/* :not() */
+.menu .nav-link:not(.btn-contacto-nav)::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    left: 0.5rem;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-acento);
+    transition: width 0.3s ease;
+}
+
+/* Combinación de selectores */
+.menu .nav-link:not(.btn-contacto-nav):hover::after {
+    width: calc(100% - 1rem);
+}
+
+/* ==========================================
+   6. ENCABEZADO
+========================================== */
+
+.encabezado {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.88),
+            rgba(37, 99, 235, 0.78)
+        ),
+        url('https://picsum.photos/1600/700') center/cover no-repeat;
+
+    color: var(--color-blanco);
+    padding: 6rem 1rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.etiqueta {
+    display: inline-block;
+    background: rgba(6, 182, 212, 0.2);
+    border: 1px solid rgba(6, 182, 212, 0.5);
+    color: #67e8f9;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+}
+
+/* ==========================================
+   7. BOTONES Y PSEUDOCLASES
+========================================== */
+
+.btn-hero {
+    display: inline-block;
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    text-decoration: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+/* :hover */
+.btn-hero:hover {
+    background-color: #1d4ed8;
+    color: var(--color-blanco);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+}
+
+/* :active */
+.btn-hero:active {
+    transform: scale(0.96);
+}
+
+/* ==========================================
+   8. TARJETAS PRINCIPALES
+========================================== */
+
+.contenido,
+.lateral,
+.card-contacto {
+    background: var(--color-blanco);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--color-borde);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+    transition: 0.3s ease;
+}
+
+/* :hover */
+.contenido:hover,
+.lateral:hover,
+.card-contacto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.10);
+}
+
+/* :focus-within */
+.card-contacto:focus-within {
+    border-color: var(--color-primario);
+}
+
+/* ==========================================
+   9. TEXTOS E IMÁGENES
+========================================== */
+
+.subtitulo {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: var(--color-primario);
+    text-transform: uppercase;
+}
+
+.img-destacada-wrapper {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.img-destacada-wrapper img {
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+
+/* Combinación de selectores */
+.contenido:hover .img-destacada-wrapper img {
+    transform: scale(1.05);
+}
+
+.enlace-contenido {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-primario);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 0.5rem;
+}
+
+/* :hover */
+.enlace-contenido:hover {
+    color: #1d4ed8;
+}
+
+/* :active */
+.enlace-contenido:active {
+    color: var(--color-acento);
+}
+
+/* ==========================================
+   10. INFORMACIÓN LATERAL
+========================================== */
+
+.icono-lateral {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background-color: #eff6ff;
+    color: var(--color-primario);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+.estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #059669;
+    background: #ecfdf5;
+    padding: 0.4rem 0.9rem;
+    border-radius: 50px;
+}
+
+.punto-activo {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+}
+
+/* ==========================================
+   11. GALERÍA DE LOS 18 CUADROS
+========================================== */
+
+.cuadro {
+    background: var(--color-blanco);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--color-borde);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease,
+                border-color 0.3s ease;
+    cursor: pointer;
+    height: 100%;
+}
+
+.cuadro-img {
+    position: relative;
+    height: 130px;
+    overflow: hidden;
+    background-color: #e2e8f0;
+}
+
+.cuadro-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+}
+
+.badge-icon {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    background: rgba(15, 23, 42, 0.85);
+    color: var(--color-blanco);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    transition: 0.3s ease;
+}
+
+.cuadro-body {
+    padding: 0.9rem;
+    text-align: center;
+}
+
+.cuadro-body h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.cuadro-body small {
+    color: #64748b;
+    font-size: 0.78rem;
+}
+
+/* ==========================================
+   12. PSEUDOCLASES DE LOS CUADROS
+========================================== */
+
+/* :hover */
+.cuadro:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+    border-color: var(--color-primario);
+}
+
+.cuadro:hover .cuadro-img img {
+    transform: scale(1.12);
+}
+
+/* :active */
+.cuadro:active {
+    transform: scale(0.97);
+}
+
+/* :nth-child(even) */
+.cuadros-grid > div:nth-child(even) .cuadro:hover {
+    border-color: var(--color-acento);
+}
+
+/* :nth-child(odd) */
+.cuadros-grid > div:nth-child(odd) .cuadro:hover {
+    border-color: var(--color-primario);
+}
+
+/* :first-child */
+.cuadros-grid > div:first-child .cuadro {
+    border-top: 3px solid var(--color-primario);
+}
+
+/* :last-child */
+.cuadros-grid > div:last-child .cuadro {
+    border-top: 3px solid #10b981;
+}
+
+/* :not() */
+.cuadro:not(:hover) {
+    transition: all 0.3s ease;
+}
+
+/* ==========================================
+   13. FORMULARIO Y ESPECIFICIDAD
+========================================== */
+
+.campo-pro {
+    border-radius: 10px;
+    padding: 0.65rem 1rem;
+    border: 1px solid #cbd5e1;
+    transition: all 0.25s ease;
+}
+
+/* :focus */
+.campo-pro:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+    outline: none;
+}
+
+/* :valid */
+.campo-pro:valid {
+    border-color: #10b981;
+}
+
+/* :invalid */
+.campo-pro:invalid {
+    border-color: #ef4444;
+}
+
+/* :checked */
+input[type="checkbox"]:checked {
+    accent-color: var(--color-primario);
+}
+
+/* :required */
+.campo-pro:required {
+    border-left: 3px solid var(--color-acento);
+}
+
+/* :disabled */
+.campo-pro:disabled {
+    background-color: #e2e8f0;
+    cursor: not-allowed;
+}
+
+.btn-enviar {
+    background-color: var(--color-oscuro);
+    color: var(--color-blanco);
+    border: none;
+    padding: 0.75rem;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: background-color 0.25s ease;
+}
+
+/* :hover */
+.btn-enviar:hover {
+    background-color: var(--color-primario);
+}
+
+/* :active */
+.btn-enviar:active {
+    transform: scale(0.97);
+}
+
+/* ==========================================
+   14. ESPECIFICIDAD CSS
+========================================== */
+
+/* Selector universal */
+* {
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+}
+
+/* Selector de etiqueta */
+p {
+    font-size: 1rem;
+}
+
+/* Selector de clase */
+.texto {
+    color: green;
+}
+
+/* Selector de ID */
+#identificador {
+    color: red;
+}
+
+/* Combinación de selectores */
+p.especial#prioridad {
+    color: orange;
+}
+
+/* Estilo en línea:
+   Se escribe directamente en el HTML. */
+
+/* Uso de !important */
+.texto-importante {
+    color: black !important;
+}
+
+/* Selector descendiente */
+.contenido p {
+    color: #64748b;
+}
+
+/* Selector de hijo directo */
+.contenedor > p {
+    font-weight: bold;
+}
+
+/* ==========================================
+   15. PSEUDOCLASE :TARGET
+========================================== */
+
+#estructura:target,
+#servicios:target,
+#nosotros:target,
+#contacto:target {
+    scroll-margin-top: 90px;
+}
+
+/* ==========================================
+   16. PSEUDOELEMENTOS
+========================================== */
+
+/* ::before */
+.subtitulo::before {
+    content: "◆ ";
+}
+
+/* ::after */
+.titulo-seccion h2::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 3px;
+    background-color: var(--color-acento);
+    margin: 12px auto;
+    border-radius: 5px;
+}
+
+/* ==========================================
+   17. PIE DE PÁGINA
+========================================== */
+
+.pie-pagina {
+    background-color: var(--color-oscuro);
+    color: #94a3b8;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+}
+
+/* :hover */
+.pie-pagina a:hover {
+    color: var(--color-acento);
+}
+
+/* ==========================================
+   18. RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+    .encabezado {
+        padding: 4rem 1rem;
+    }
+
+    .contenido,
+    .lateral,
+    .card-contacto {
+        padding: 1.5rem;
+    }
+
+    .cuadro-img {
+        height: 120px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .encabezado {
+        padding: 3rem 1rem;
+    }
+
+    .etiqueta {
+        font-size: 0.65rem;
+    }
+
+    .cuadro-img {
+        height: 140px;
+    }
+
+}

@@ -1,0 +1,85 @@
+body {
+    background-color: #f1f4f9;
+}
+
+/* COLORES DE LOS CUADROS (los mismos del index) */
+.caja1  { min-height: 100px; background-color: #011C6B; color: white; }
+.caja2  { background-color: #011142; }
+.caja3  { background-color: #01258F; }
+.caja4  { background-color: #023BE6; }
+.caja5  { background-color: #0231BD; }
+.caja6  { background-color: #A67879; }
+.caja8  { background-color: #716F82; }
+.caja9  { background-color: #011C6B; }
+.caja10 { background-color: #011142; }
+
+/* MENÚ */
+.menu {
+    background-color: white;
+    padding: 15px;
+}
+
+.menu .btn {
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* BLOQUES DE INFORMACIÓN */
+.bloque {
+    color: white;
+    padding: 25px;
+}
+
+.bloque h2 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.bloque > p,
+.bloque li {
+    color: inherit;
+    font-weight: normal;
+}
+
+/* TARJETA BLANCA DENTRO DE UN BLOQUE */
+.tarjeta-blanca {
+    background-color: white;
+    color: #202b3c;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.calculo {
+    display: block;
+    margin-bottom: 12px;
+    color: #555;
+}
+
+.codigo {
+    margin: 0 0 10px;
+    padding: 15px;
+    background-color: #f1f4f9;
+    color: #202b3c;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+.btn-primary .icono-btn {
+    filter: brightness(0) invert(1);
+}
+
+/* ICONOS DE LOS BOTONES */
+.icono-btn {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+/* El icono se ve blanco en el botón activo y al pasar el mouse */
+.btn-primary .icono-btn,
+.btn:hover .icono-btn {
+    filter: brightness(0) invert(1);
+}

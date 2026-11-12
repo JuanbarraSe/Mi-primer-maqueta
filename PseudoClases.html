@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo Clases y Elementos CSS</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="tema.css">
+
+    <style>
+        /* Bloque verde (caja7) que no está en tema.css */
+        .caja7 { background-color: #84C484; color: #011142; }
+        .caja7 .bloque, .bloque.caja7 { color: #011142; }
+
+        /* Ilustraciones SVG */
+        .ilustracion {
+            width: 100%;
+            max-width: 280px;
+            height: 145px;
+            margin-bottom: 15px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 8px;
+        }
+        .ilustracion text { font-family: Arial, sans-serif; }
+
+        /* ---------- DEMOS: pseudo clases ---------- */
+
+        /* :hover, :active, :focus-visible */
+        .demo-btn {
+            background-color: #1746a2;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color .2s, transform .2s;
+        }
+        .demo-btn:hover {
+            background-color: #84C484;
+            color: #011142;
+            transform: translateY(-3px);
+        }
+        .demo-btn:active { transform: scale(.94); }
+        .demo-btn:focus-visible {
+            outline: 3px solid #d99b37;
+            outline-offset: 3px;
+        }
+
+        /* :first-child, :last-child, :nth-child */
+        .demo-lista { list-style: none; padding: 0; margin: 0; }
+        .demo-lista li {
+            padding: 9px 14px;
+            background-color: #eaf1ff;
+            color: #011142;
+            border-bottom: 1px solid #b8d0ff;
+        }
+        .demo-lista li:nth-child(even) { background-color: #d5e3ff; }
+        .demo-lista li:first-child { background-color: #84C484; font-weight: bold; }
+        .demo-lista li:last-child  { background-color: #A67879; color: white; font-weight: bold; border-bottom: none; }
+
+        /* :focus, :disabled, :valid, :invalid */
+        .demo-input {
+            width: 100%;
+            padding: 9px 14px;
+            margin-bottom: 10px;
+            border: 2px solid #b8d0ff;
+            border-radius: 8px;
+            background-color: white;
+            color: #202b3c;
+        }
+        .demo-input:focus {
+            border-color: #023BE6;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(2, 59, 230, .2);
+        }
+        .demo-input:disabled { background-color: #e9ecef; cursor: not-allowed; }
+        .demo-input:required:valid { border-color: #32965c; }
+        .demo-input:required:invalid:not(:placeholder-shown) { border-color: #c0392b; }
+
+        /* :checked */
+        .demo-check:checked + span { color: #32965c; font-weight: bold; }
+
+        /* ---------- DEMOS: pseudo elementos ---------- */
+        .demo-letra::first-letter {
+            float: left;
+            font-size: 3.2rem;
+            line-height: 1;
+            font-weight: bold;
+            color: #023BE6;
+            margin-right: 8px;
+        }
+        .demo-linea::first-line {
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #1746a2;
+        }
+        .demo-etiqueta::before { content: "★ "; color: #d99b37; }
+        .demo-etiqueta::after  { content: " (nuevo)"; color: #32965c; font-size: .85em; }
+        .demo-seleccion::selection { background-color: #84C484; color: #011142; }
+        .demo-ph::placeholder { color: #A67879; font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+
+        <!-- ENCABEZADO -->
+        <div class="row">
+            <div class="col-12 caja1 d-flex align-items-center justify-content-center">
+                <h1 class="fw-bold">
+                    <a href="index.html" class="text-white text-decoration-none">CSS FÁCIL</a>
+                </h1>
+            </div>
+        </div>
+
+        <!-- MENÚ -->
+        <nav class="menu">
+            <div class="row g-2">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a class="btn btn-outline-primary" href="Estructura.html">
+                        <img src="img/estructura.webp" alt="" class="icono-btn">
+                        Estructura y Sintaxis
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a class="btn btn-outline-primary" href="Especificidad.html">
+                        <img src="img/especificidad.webp" alt="" class="icono-btn">
+                        Niveles de especificidad
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a class="btn btn-primary" href="PseudoClases.html">
+                        <img src="img/pseudoclases.webp" alt="" class="icono-btn">
+                        Pseudo Clases y Elementos
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a class="btn btn-outline-primary" href="BoxModel.html">
+                        <img src="img/boxmodel.webp" alt="" class="icono-btn">
+                        Box Model
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row g-2 mt-1">
+
+            <!-- TÍTULO -->
+            <header class="col-12 caja2 bloque text-center">
+                <h2 class="display-6 fw-bold">Pseudo Clases y Pseudo Elementos</h2>
+                <p class="mb-0">
+                    Cambia el estilo según el estado de un elemento o modifica
+                    partes específicas de él, sin escribir HTML extra.
+                </p>
+            </header>
+
+            <!-- QUÉ ES UNA PSEUDO CLASE -->
+            <section class="col-12 col-md-6 caja3 bloque">
+                <div class="text-center">
+                    <svg class="ilustracion" viewBox="0 0 320 145">
+                        <text x="25" y="25" font-size="13" fill="#1746a2">Estado normal</text>
+                        <rect x="25" y="35" width="115" height="42" rx="7" fill="#1746a2"/>
+                        <text x="82" y="61" text-anchor="middle" font-size="15" fill="white">Botón</text>
+
+                        <text x="180" y="25" font-size="13" fill="#1746a2">:hover</text>
+                        <rect x="180" y="35" width="115" height="42" rx="7" fill="#84C484" stroke="#1746a2" stroke-width="2"/>
+                        <text x="237" y="61" text-anchor="middle" font-size="15" fill="#011142">Botón</text>
+
+                        <path d="M140 56 L175 56" stroke="#1746a2" stroke-width="2" stroke-dasharray="4 3"/>
+                        <text x="160" y="110" text-anchor="middle" font-size="14" fill="#202b3c">Al pasar el mouse cambia el estilo</text>
+                    </svg>
+                </div>
+
+                <h2>¿Qué es una pseudo clase?</h2>
+                <p>
+                    Es una palabra clave que se agrega a un selector para aplicar
+                    estilos solo cuando el elemento está en un <strong>estado
+                    especial</strong>: con el mouse encima, seleccionado,
+                    deshabilitado, primero de una lista, etc.
+                </p>
+                <p>Se escriben con <strong>dos puntos</strong> (<code class="text-white">:</code>).</p>
+
+                <pre class="codigo mb-0">boton:hover {
+    background-color: green;
+}</pre>
+            </section>
+
+            <!-- QUÉ ES UN PSEUDO ELEMENTO -->
+            <section class="col-12 col-md-6 caja4 bloque">
+                <div class="text-center">
+                    <svg class="ilustracion" viewBox="0 0 320 145">
+                        <rect x="15" y="15" width="290" height="115" rx="8" fill="#edf2ff"/>
+                        <text x="30" y="40" font-size="14" fill="#023BE6">::first-letter</text>
+                        <text x="30" y="92" font-size="55" font-weight="bold" fill="#023BE6">C</text>
+                        <text x="68" y="78" font-size="20" fill="#011142">SS es genial</text>
+                        <text x="30" y="116" font-size="12" fill="#A67879">Modifica una parte del texto</text>
+                    </svg>
+                </div>
+
+                <h2>¿Qué es un pseudo elemento?</h2>
+                <p>
+                    Permite dar estilo a una <strong>parte específica</strong> de
+                    un elemento (la primera letra, la primera línea) o incluso
+                    <strong>crear contenido</strong> antes o después de él.
+                </p>
+                <p>Se escriben con <strong>doble dos puntos</strong> (<code class="text-white">::</code>).</p>
+
+                <pre class="codigo mb-0">p::first-letter {
+    font-size: 3rem;
+    color: blue;
+}</pre>
+            </section>
+
+            <!-- MOUSE Y TECLADO -->
+            <section class="col-12 caja5 bloque">
+                <h2>Pseudo clases del mouse y el teclado</h2>
+
+                <div class="row g-3 align-items-center">
+                    <div class="col-12 col-lg-7">
+                        <ul class="mb-0">
+                            <li><code class="text-white">:hover</code> el mouse está encima del elemento.</li>
+                            <li><code class="text-white">:active</code> el elemento se está presionando (mientras haces clic).</li>
+                            <li><code class="text-white">:focus</code> el elemento está seleccionado, por ejemplo un campo de texto.</li>
+                            <li><code class="text-white">:focus-visible</code> recibe el foco con el teclado (tecla Tab).</li>
+                            <li><code class="text-white">:visited</code> un enlace que ya se visitó.</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-12 col-lg-5">
+                        <div class="tarjeta-blanca text-center">
+                            <p class="fw-bold mb-2">Pruébalo: pasa el mouse, haz clic o usa Tab</p>
+                            <button class="demo-btn">Botón interactivo</button>
+                            <pre class="codigo mt-3 mb-0 text-start">.demo-btn:hover  { color: verde; }
+.demo-btn:active { transform: scale(.94); }</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ESTRUCTURALES -->
+            <section class="col-12 col-md-6 caja8 bloque">
+                <div class="text-center">
+                    <svg class="ilustracion" viewBox="0 0 320 145">
+                        <rect x="25" y="10" width="270" height="28" rx="5" fill="#84C484"/>
+                        <text x="45" y="29" font-size="14" fill="#011142">:first-child</text>
+
+                        <rect x="25" y="40" width="270" height="28" rx="5" fill="#eaf1ff"/>
+                        <text x="45" y="59" font-size="14" fill="#1746a2">Elemento 2</text>
+
+                        <rect x="25" y="70" width="270" height="28" rx="5" fill="#d5e3ff"/>
+                        <text x="45" y="89" font-size="14" fill="#1746a2">:nth-child(even)</text>
+
+                        <rect x="25" y="100" width="270" height="28" rx="5" fill="#A67879"/>
+                        <text x="45" y="119" font-size="14" fill="white">:last-child</text>
+                    </svg>
+                </div>
+
+                <h2>Pseudo clases estructurales</h2>
+                <p>Eligen elementos según su <strong>posición</strong> dentro de su contenedor.</p>
+
+                <div class="tarjeta-blanca">
+                    <ul class="demo-lista">
+                        <li>Primer elemento</li>
+                        <li>Segundo elemento</li>
+                        <li>Tercer elemento</li>
+                        <li>Cuarto elemento</li>
+                        <li>Último elemento</li>
+                    </ul>
+                </div>
+
+                <pre class="codigo mt-3 mb-0">li:first-child      { ... }
+li:last-child       { ... }
+li:nth-child(even)  { ... }</pre>
+            </section>
+
+            <!-- FORMULARIOS -->
+            <section class="col-12 col-md-6 caja9 bloque">
+                <h2>Pseudo clases de formularios</h2>
+                <p>
+                    Cambian el estilo según el estado de un campo: seleccionado,
+                    marcado, bloqueado o con datos correctos.
+                </p>
+
+                <div class="tarjeta-blanca">
+                    <input class="demo-input" type="text" placeholder=":focus → haz clic aquí">
+
+                    <input class="demo-input" type="email" required placeholder=":valid / :invalid → escribe un correo">
+
+                    <input class="demo-input" type="text" disabled placeholder=":disabled → campo bloqueado">
+
+                    <label class="d-block">
+                        <input class="demo-check" type="checkbox">
+                        <span>:checked → marca esta casilla</span>
+                    </label>
+                </div>
+
+                <pre class="codigo mt-3 mb-0">input:focus    { border-color: blue; }
+input:disabled { background: gray; }
+input:checked + span { color: green; }</pre>
+            </section>
+
+            <!-- PSEUDO ELEMENTOS EN ACCIÓN -->
+            <section class="col-12 caja6 bloque">
+                <h2>Pseudo elementos en acción</h2>
+
+                <div class="row g-3">
+
+                    <div class="col-12 col-lg-6">
+                        <div class="tarjeta-blanca h-100">
+                            <h5>::first-letter</h5>
+                            <p class="demo-letra">
+                                CSS permite darle estilo solo a la primera letra de un
+                                párrafo, como en los libros y las revistas.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="tarjeta-blanca h-100">
+                            <h5>::first-line</h5>
+                            <p class="demo-linea mb-0">
+                                Solo la primera línea del párrafo cambia de estilo, y se
+                                adapta sola si cambias el tamaño de la ventana, porque
+                                depende del texto que cabe en ella.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="tarjeta-blanca h-100 text-center">
+                            <h5>::before y ::after</h5>
+                            <svg class="ilustracion" viewBox="0 0 320 145">
+                                <text x="160" y="20" text-anchor="middle" font-size="12" fill="#1746a2">Elemento</text>
+                                <rect x="15" y="28" width="290" height="95" rx="8" fill="#edf2ff" stroke="#1746a2" stroke-width="2" stroke-dasharray="6 4"/>
+                                <rect x="28" y="60" width="74" height="35" rx="5" fill="#84C484"/>
+                                <text x="65" y="82" text-anchor="middle" font-size="13" fill="#011142">::before</text>
+                                <rect x="123" y="60" width="74" height="35" rx="5" fill="#b8d0ff"/>
+                                <text x="160" y="82" text-anchor="middle" font-size="13" fill="#011142">Texto</text>
+                                <rect x="218" y="60" width="74" height="35" rx="5" fill="#ffe4a8"/>
+                                <text x="255" y="82" text-anchor="middle" font-size="13" fill="#011142">::after</text>
+                            </svg>
+                            <p class="demo-etiqueta fw-bold mb-0">Producto destacado</p>
+                            <small class="text-secondary">Los símbolos y la etiqueta los agrega CSS con <code>content</code>.</small>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="tarjeta-blanca h-100">
+                            <h5>::selection y ::placeholder</h5>
+                            <p class="demo-seleccion">
+                                Selecciona este texto con el mouse: el color de selección
+                                lo define <code>::selection</code>.
+                            </p>
+                            <input class="demo-input demo-ph mb-0" type="text" placeholder="Este texto de ayuda lo estiliza ::placeholder">
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- TABLA RESUMEN -->
+            <section class="col-12 caja7 bloque">
+                <h2>Resumen rápido</h2>
+
+                <div class="tarjeta-blanca">
+                    <div class="table-responsive">
+                        <table class="table table-sm mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Selector</th>
+                                    <th>Tipo</th>
+                                    <th>Se aplica cuando...</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>:hover</code></td><td>Pseudo clase</td><td>El mouse está encima</td></tr>
+                                <tr><td><code>:active</code></td><td>Pseudo clase</td><td>Se está haciendo clic</td></tr>
+                                <tr><td><code>:focus</code></td><td>Pseudo clase</td><td>El elemento está seleccionado</td></tr>
+                                <tr><td><code>:checked</code></td><td>Pseudo clase</td><td>Una casilla u opción está marcada</td></tr>
+                                <tr><td><code>:disabled</code></td><td>Pseudo clase</td><td>El campo está deshabilitado</td></tr>
+                                <tr><td><code>:first-child</code></td><td>Pseudo clase</td><td>Es el primer hijo de su contenedor</td></tr>
+                                <tr><td><code>:nth-child(n)</code></td><td>Pseudo clase</td><td>Ocupa una posición concreta</td></tr>
+                                <tr><td><code>::first-letter</code></td><td>Pseudo elemento</td><td>Siempre, sobre la primera letra</td></tr>
+                                <tr><td><code>::first-line</code></td><td>Pseudo elemento</td><td>Siempre, sobre la primera línea</td></tr>
+                                <tr><td><code>::before</code> / <code>::after</code></td><td>Pseudo elemento</td><td>Inserta contenido antes o después</td></tr>
+                                <tr><td><code>::selection</code></td><td>Pseudo elemento</td><td>El usuario selecciona texto</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DIFERENCIA -->
+            <footer class="col-12 caja10 bloque">
+                <h2>¿Cómo no confundirlas?</h2>
+                <ul class="mb-3">
+                    <li>
+                        <strong>Pseudo clase (<code class="text-white">:</code>)</strong>:
+                        depende del <em>estado</em> del elemento. Pregunta "¿en qué
+                        situación está?".
+                    </li>
+                    <li>
+                        <strong>Pseudo elemento (<code class="text-white">::</code>)</strong>:
+                        elige una <em>parte</em> del elemento o crea una nueva.
+                        Pregunta "¿qué parte quiero modificar?".
+                    </li>
+                    <li>
+                        En especificidad, una pseudo clase pesa como una clase
+                        (<code class="text-white">0,0,0,1,0</code>) y un pseudo
+                        elemento como un elemento
+                        (<code class="text-white">0,0,0,0,1</code>).
+                    </li>
+                </ul>
+                <a class="btn btn-outline-light" href="index.html">Volver al inicio</a>
+            </footer>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

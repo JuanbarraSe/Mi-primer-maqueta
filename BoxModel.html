@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model CSS</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="tema.css">
+
+    <style>
+        /* Estilos específicos para el diagrama interactivo */
+        .diagrama-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: #dbeafe;
+            border-radius: 0.5rem;
+            padding: 15px;
+        }
+
+        .diagrama-boxmodel svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .diagrama-boxmodel .texto-diagrama {
+            font-weight: 700;
+            font-size: 20px;
+            fill: #0f172a;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+
+        .diagrama-boxmodel .linea-punteada {
+            stroke: #1e293b;
+            stroke-width: 2.2;
+            stroke-dasharray: 6, 6;
+            fill: none;
+        }
+
+        .diagrama-boxmodel .borde-solido {
+            stroke: #1e293b;
+            stroke-width: 2.2;
+            stroke-linejoin: round;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Clases para el comportamiento interactivo de los botones */
+        .oculto {
+            opacity: 0.15;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+
+        <!-- ENCABEZADO -->
+        <div class="row">
+            <div class="col-12 caja1 d-flex align-items-center justify-content-center">
+                <h1 class="fw-bold">
+                    <a href="index.html" class="text-white text-decoration-none">CSS FÁCIL</a>
+                </h1>
+            </div>
+        </div>
+
+        <!-- MENÚ -->
+        <nav class="menu">
+            <div class="row g-2">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a class="btn btn-outline-primary" href="Estructura.html">
+                        <img src="img/estructura.webp" alt="" class="icono-btn">
+                        Estructura y Sintaxis
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a class="btn btn-outline-primary" href="Especificidad.html">
+                        <img src="img/especificidad.webp" alt="" class="icono-btn">
+                        Niveles de especificidad
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a class="btn btn-outline-primary" href="PseudoClases.html">
+                        <img src="img/pseudoclases.webp" alt="" class="icono-btn">
+                        Pseudo Clases y Elementos
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a class="btn btn-primary" href="BoxModel.html">
+                        <img src="img/boxmodel.webp" alt="" class="icono-btn">
+                        Box Model
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row g-2 mt-1">
+
+            <!-- TÍTULO -->
+            <header class="col-12 caja2 bloque text-center">
+                <h2>Modelo de caja (Box Model)</h2>
+                <p>Aprendiendo a controlar los espacios y tamaños en CSS</p>
+            </header>
+
+            <!-- QUÉ ES -->
+            <section class="col-12 col-md-6 caja3 bloque">
+                <h2>¿Qué es el Box Model?</h2>
+                <p>
+                    El Box Model o modelo de caja es un concepto fundamental de CSS
+                    que explica cómo se organizan y se muestran los elementos en una
+                    página web. Cada elemento HTML se representa como una caja
+                    rectangular que contiene diferentes espacios.
+                </p>
+                <p>
+                    Permite controlar el tamaño, los bordes y la separación de los
+                    elementos para crear diseños más organizados.
+                </p>
+            </section>
+
+            <!-- CÓMO FUNCIONA -->
+            <section class="col-12 col-md-6 caja4 bloque">
+                <h2>¿Cómo funciona?</h2>
+                <p>
+                    Cada elemento de una página web está formado por cuatro partes:
+                    contenido, padding, border y margin.
+                </p>
+                <p>
+                    Estas partes trabajan juntas para determinar el espacio total
+                    que ocupa un elemento dentro de la página.
+                </p>
+                <p>
+                    Al modificar sus valores en CSS podemos cambiar la distancia
+                    entre elementos, el tamaño de las cajas y su apariencia.
+                </p>
+            </section>
+
+            <!-- PARTES DEL BOX MODEL -->
+            <section class="col-12 caja5 bloque">
+                <h2>Partes del modelo de caja</h2>
+
+                <div class="tarjeta-blanca">
+                    <table class="table table-sm mb-0">
+                        <thead>
+                            <tr>
+                                <th>Parte</th>
+                                <th>Descripción</th>
+                                <th>Ejemplo CSS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Content</td>
+                                <td>Es el contenido del elemento, como texto o imágenes.</td>
+                                <td><code>width: 200px;</code></td>
+                            </tr>
+                            <tr>
+                                <td>Padding</td>
+                                <td>Es el espacio interno entre el contenido y el borde.</td>
+                                <td><code>padding: 20px;</code></td>
+                            </tr>
+                            <tr>
+                                <td>Border</td>
+                                <td>Es el borde que rodea el contenido y el padding.</td>
+                                <td><code>border: 5px solid black;</code></td>
+                            </tr>
+                            <tr>
+                                <td>Margin</td>
+                                <td>Es el espacio externo que separa una caja de otras.</td>
+                                <td><code>margin: 15px;</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- DIAGRAMA ISOMÉTRICO INTERACTIVO CON BOTONES -->
+                <div class="text-center mt-3">
+                    <div class="diagrama-container shadow-sm">
+                        
+                        <!-- Botones de control interactivos -->
+                        <div class="btn-group mb-3 flex-wrap justify-content-center" role="group" aria-label="Filtros Box Model">
+                            <button type="button" class="btn btn-sm btn-dark active" onclick="filtrarBoxModel('todos', this)">Todos</button>
+                            <button type="button" class="btn btn-sm btn-warning text-dark" onclick="filtrarBoxModel('content', this)">Content</button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="filtrarBoxModel('padding', this)">Padding</button>
+                            <button type="button" class="btn btn-sm btn-info text-white" onclick="filtrarBoxModel('border', this)">Border</button>
+                            <button type="button" class="btn btn-sm btn-primary" onclick="filtrarBoxModel('margin', this)">Margin</button>
+                        </div>
+
+                        <div class="diagrama-boxmodel">
+                            <svg viewBox="0 0 800 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama isométrico interactivo del Modelo de Caja CSS">
+                                <defs>
+                                    <marker id="flecha-fin" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                                        <path d="M1,1 L7,4 L1,7" fill="none" stroke="#1e293b" stroke-width="1.8" />
+                                    </marker>
+                                    <marker id="flecha-inicio" markerWidth="8" markerHeight="8" refX="1" refY="4" orient="auto">
+                                        <path d="M7,1 L1,4 L7,7" fill="none" stroke="#1e293b" stroke-width="1.8" />
+                                    </marker>
+                                </defs>
+
+                                <!-- LÍNEAS GUÍA PUNTEADAS EXTERIORES -->
+                                <line x1="170" y1="225" x2="345" y2="124" class="linea-punteada capa-margin" />
+                                <line x1="455" y1="124" x2="630" y2="225" class="linea-punteada capa-margin" />
+                                <line x1="170" y1="365" x2="345" y2="466" class="linea-punteada capa-margin" />
+                                <line x1="455" y1="466" x2="630" y2="365" class="linea-punteada capa-margin" />
+                                <line x1="170" y1="225" x2="170" y2="365" class="linea-punteada capa-margin" />
+                                <line x1="630" y1="225" x2="630" y2="365" class="linea-punteada capa-margin" />
+
+                                <!-- TEXTOS EXTERIORES -->
+                                <text x="245" y="162" class="texto-diagrama capa-margin" transform="rotate(-30, 245, 162)">Content</text>
+                                <text x="555" y="162" class="texto-diagrama capa-margin" transform="rotate(30, 555, 162)">Content</text>
+                                <text x="245" y="428" class="texto-diagrama capa-margin" transform="rotate(30, 245, 428)">Margin</text>
+                                <text x="555" y="428" class="texto-diagrama capa-margin" transform="rotate(-30, 555, 428)">Margin</text>
+
+                                <!-- PARED INTERIOR GRIS (Content central) -->
+                                <polygon points="400,140 530,215 530,290 400,215" fill="#94a3b8" class="borde-solido capa-content" />
+                                <line x1="430" y1="185" x2="495" y2="223" stroke="#1e293b" stroke-width="2" marker-start="url(#flecha-inicio)" marker-end="url(#flecha-fin)" class="capa-content" />
+                                <text x="462" y="228" class="texto-diagrama capa-content" transform="rotate(30, 462, 228)">onien</text>
+
+                                <!-- CARAS SUPERIORES (Anillo 3D - Padding / Border) -->
+                                <polygon points="190,261 400,140 400,215 255,299" fill="#d99b43" class="borde-solido capa-padding" />
+                                <polygon points="190,261 255,299 400,382 335,420" fill="#d99b43" class="borde-solido capa-padding" />
+                                <polygon points="530,215 610,261 545,299 480,261" fill="#7dd3fc" class="borde-solido capa-border" />
+                                <polygon points="545,299 610,261 400,382 335,345" fill="#0ea5e9" class="borde-solido capa-border" />
+
+                                <!-- PAREDES FRONTALES EXTERIORES -->
+                                <polygon points="190,261 335,345 335,420 190,336" fill="#c2592b" class="borde-solido capa-padding" />
+                                <polygon points="335,345 400,382 400,457 335,420" fill="#0284c7" class="borde-solido capa-border" />
+                                <polygon points="400,382 610,261 610,336 400,457" fill="#0369a1" class="borde-solido capa-border" />
+
+                                <!-- LÍNEAS PUNTEADAS CENTRALES -->
+                                <line x1="400" y1="140" x2="400" y2="335" class="linea-punteada capa-content" marker-end="url(#flecha-fin)" />
+                                <line x1="367" y1="363" x2="367" y2="438" class="linea-punteada capa-border" />
+
+                                <!-- TEXTOS SOBRE EL BLOQUE 3D -->
+                                <text x="305" y="232" class="texto-diagrama capa-content" transform="rotate(-30, 305, 232)">Content</text>
+                                <text x="295" y="342" class="texto-diagrama capa-content" transform="rotate(30, 295, 342)">Content</text>
+                                <text x="262" y="352" class="texto-diagrama capa-padding" transform="rotate(30, 262, 352)">Padding</text>
+                                <text x="485" y="318" class="texto-diagrama capa-border" transform="rotate(-30, 485, 318)">Border</text>
+                                <text x="505" y="372" class="texto-diagrama capa-border" transform="rotate(-30, 505, 372)">Marder</text>
+
+                                <!-- Detalle de flecha en la esquina frontal -->
+                                <polyline points="355,375 355,388 378,395" fill="none" stroke="#1e293b" stroke-width="2" />
+                                <polyline points="370,384 380,395 367,401" fill="none" stroke="#1e293b" stroke-width="2" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EJEMPLOS -->
+            <section class="col-12 col-md-6 caja8 bloque">
+                <h2>Ejemplo de Box Model</h2>
+
+                <div class="tarjeta-blanca">
+
+                    <p>Este es un ejemplo de una caja creada con CSS:</p>
+
+                    <pre class="codigo">.caja {
+    width: 200px;
+    height: 100px;
+    padding: 20px;
+    border: 5px solid black;
+    margin: 15px;
+}</pre>
+
+                    <p><strong>¿Qué significa?</strong></p>
+                    <ul>
+                        <li>Width: establece el ancho del contenido.</li>
+                        <li>Height: establece la altura del contenido.</li>
+                        <li>Padding: agrega espacio interno.</li>
+                        <li>Border: establece el borde de la caja.</li>
+                        <li>Margin: agrega espacio externo.</li>
+                    </ul>
+
+                </div>
+            </section>
+
+            <!-- BOX SIZING -->
+            <section class="col-12 col-md-6 caja9 bloque">
+                <h2>Propiedad Box Sizing</h2>
+
+                <p>
+                    La propiedad box-sizing permite controlar cómo se calcula
+                    el tamaño total de una caja.
+                </p>
+
+                <div class="tarjeta-blanca">
+                    <h5>Content-box</h5>
+                    <p>
+                        Es el valor predeterminado. El padding y el border
+                        se suman al ancho y alto establecidos.
+                    </p>
+
+                    <pre class="codigo">box-sizing: content-box;</pre>
+
+                    <h5 class="mt-3">Border-box</h5>
+                    <p>
+                        Incluye el padding y el border dentro del ancho y
+                        alto establecidos, facilitando el diseño.
+                    </p>
+
+                    <pre class="codigo">box-sizing: border-box;</pre>
+                </div>
+            </section>
+
+            <!-- EJEMPLO VISUAL -->
+            <section class="col-12 caja6 bloque">
+                <h2>Visualización del modelo de caja</h2>
+
+                <div class="tarjeta-blanca text-center">
+
+                    <p>Así se organizan las cuatro partes del Box Model:</p>
+
+                    <div class="p-4 m-2 rounded"
+                    style="background-color: #f8d7da; border: 2px solid #dc3545;">
+
+                        <strong>Margin (espacio exterior)</strong>
+
+                        <div class="p-4 mt-3 rounded"
+                        style="background-color: #fff3cd; border: 2px solid #ffc107;">
+
+                            <strong>Border (borde)</strong>
+
+                            <div class="p-4 mt-3 rounded"
+                            style="background-color: #d1e7dd; border: 2px solid #198754;">
+
+                                <strong>Padding (espacio interno)</strong>
+
+                                <div class="p-4 mt-3 rounded"
+                                style="background-color: #cfe2ff; border: 2px solid #0d6efd;">
+
+                                    <strong>Content (contenido)</strong>
+                                    <p class="mb-0">Texto o imágenes</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <small class="text-muted">
+                        Representación visual de las partes del modelo de caja.
+                    </small>
+                </div>
+            </section>
+
+            <!-- CONSEJOS -->
+            <section class="col-12 caja6 bloque">
+                <h2>Algunos consejos</h2>
+                <ul class="mb-0">
+                    <li>Utiliza padding para separar el contenido de los bordes.</li>
+                    <li>Usa margin para crear espacios entre diferentes elementos.</li>
+                    <li>Define bordes cuando quieras resaltar o delimitar una caja.</li>
+                    <li>Utiliza box-sizing: border-box para facilitar el control de los tamaños.</li>
+                    <li>Organiza los espacios para que tu página sea más ordenada y adaptable.</li>
+                </ul>
+            </section>
+
+            <!-- FUENTE -->
+            <footer class="col-12 caja10 bloque">
+                <small>
+                    Fuente: MDN Web Docs - Modelo de caja CSS.
+                    <a class="text-white"
+                    href="https://developer.mozilla.org/es/docs/Web/CSS/Guides/Box_model/Introduction_to_the_CSS_box_model"
+                    target="_blank" rel="noopener">
+                    developer.mozilla.org
+                    </a>
+                </small>
+            </footer>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script para darle interactividad a los botones -->
+    <script>
+        function filtrarBoxModel(capa, boton) {
+            // Actualizar botones activos
+            document.querySelectorAll('.diagrama-container .btn-group button').forEach(btn => btn.classList.remove('active'));
+            boton.classList.add('active');
+
+            // Obtener todos los elementos gráficos por partes
+            const contents = document.querySelectorAll('.capa-content');
+            const paddings = document.querySelectorAll('.capa-padding');
+            const borders = document.querySelectorAll('.capa-border');
+            const margins = document.querySelectorAll('.capa-margin');
+
+            const todasLasCapas = [
+                { elementos: contents, nombre: 'content' },
+                { elementos: paddings, nombre: 'padding' },
+                { elementos: borders, nombre: 'border' },
+                { elementos: margins, nombre: 'margin' }
+            ];
+
+            todasLasCapas.forEach(c => {
+                c.elementos.forEach(el => {
+                    if (capa === 'todos' || c.nombre === capa) {
+                        el.classList.remove('oculto');
+                    } else {
+                        el.classList.add('oculto');
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

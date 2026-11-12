@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructura y Sintaxis CSS</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="tema.css">
+</head>
+<body>
+
+    <div class="container-fluid">
+
+        <!-- ENCABEZADO -->
+        <div class="row">
+            <div class="col-12 caja1 d-flex align-items-center justify-content-center">
+                <h1 class="fw-bold">
+                    <a href="index.html" class="text-white text-decoration-none">CSS FÁCIL</a>
+                </h1>
+            </div>
+        </div>
+
+        <!-- MENÚ -->
+       <nav class="menu">
+        <div class="row g-2">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <a class="btn btn-primary" href="Estructura.html">
+                    <img src="img/estructura.webp" alt="" class="icono-btn">
+                    Estructura y Sintaxis
+                </a>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <a class="btn btn-outline-primary" href="Especificidad.html">
+                    <img src="img/especificidad.webp" alt="" class="icono-btn">
+                    Niveles de especificidad
+                </a>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <a class="btn btn-outline-primary" href="PseudoClases.html">
+                    <img src="img/pseudoclases.webp" alt="" class="icono-btn">
+                    Pseudo Clases y Elementos
+                </a>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <a class="btn btn-outline-primary" href="BoxModel.html">
+                    <img src="img/boxmodel.webp" alt="" class="icono-btn">
+                    Box Model
+                </a>
+            </div>
+        </div>
+    </nav>
+
+        <div class="row g-2 mt-1">
+
+            <!-- TÍTULO -->
+            <header class="col-12 caja2 bloque text-center">
+                <h2>Estructura y Sintaxis de CSS</h2>
+                <p>Aprende los fundamentos para dar estilo a una página web</p>
+            </header>
+
+            <!-- QUÉ ES CSS -->
+            <section class="col-12 col-md-6 caja3 bloque">
+                <h2>¿Qué es CSS?</h2>
+                <p>
+                    CSS (Cascading Style Sheets, u Hojas de Estilo en Cascada) es el
+                    lenguaje que controla cómo se ve una página web: colores,
+                    tipografías, tamaños, espacios y posiciones.
+                </p>
+                <p>
+                    HTML define el contenido y la estructura; CSS define su
+                    apariencia.
+                </p>
+            </section>
+
+            <!-- COMENTARIOS -->
+            <section class="col-12 col-md-6 caja4 bloque">
+                <h2>Comentarios</h2>
+                <p>
+                    Sirven para explicar el código y el navegador los ignora. Se
+                    escriben entre <code class="text-white">/*</code> y
+                    <code class="text-white">*/</code>.
+                </p>
+
+                <pre class="codigo">/* Estilos del encabezado */
+h1 {
+    color: blue; /* azul */
+}</pre>
+            </section>
+
+            <!-- ANATOMÍA -->
+            <section class="col-12 caja5 bloque">
+                <h2>Anatomía de una regla CSS</h2>
+
+                <pre class="codigo">h1 {
+    color: blue;
+    font-size: 32px;
+}</pre>
+
+                <div class="tarjeta-blanca">
+                    <table class="table table-sm mb-0">
+                        <thead>
+                            <tr>
+                                <th>Parte</th>
+                                <th>En el ejemplo</th>
+                                <th>Qué hace</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Selector</td>
+                                <td><code>h1</code></td>
+                                <td>Indica a qué elementos se aplica la regla.</td>
+                            </tr>
+                            <tr>
+                                <td>Bloque de declaraciones</td>
+                                <td><code>{ ... }</code></td>
+                                <td>Agrupa todos los estilos de la regla.</td>
+                            </tr>
+                            <tr>
+                                <td>Propiedad</td>
+                                <td><code>color</code></td>
+                                <td>Lo que se quiere cambiar.</td>
+                            </tr>
+                            <tr>
+                                <td>Valor</td>
+                                <td><code>blue</code></td>
+                                <td>Cómo se quiere cambiar.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="mt-3 mb-0">
+                    Cada declaración separa la propiedad y el valor con dos puntos
+                    y termina con punto y coma.
+                </p>
+            </section>
+
+            <!-- TRES FORMAS DE AGREGAR CSS -->
+            <section class="col-12 col-md-6 caja8 bloque">
+                <h2>Tres formas de agregar CSS</h2>
+
+                <p><strong>1. En línea:</strong> con el atributo <code class="text-white">style</code>.</p>
+                <pre class="codigo">&lt;h1 style="color: blue;"&gt;Hola&lt;/h1&gt;</pre>
+
+                <p><strong>2. Interno:</strong> dentro de <code class="text-white">&lt;style&gt;</code> en el <code class="text-white">&lt;head&gt;</code>.</p>
+                <pre class="codigo">&lt;style&gt;
+    h1 { color: blue; }
+&lt;/style&gt;</pre>
+
+                <p><strong>3. Externo (la más recomendada):</strong> en un archivo <code class="text-white">.css</code>.</p>
+                <pre class="codigo">&lt;link rel="stylesheet" href="estilos.css"&gt;</pre>
+            </section>
+
+            <!-- SELECTORES -->
+            <section class="col-12 col-md-6 caja9 bloque">
+                <h2>Selectores básicos</h2>
+
+                <div class="tarjeta-blanca">
+                    <table class="table table-sm mb-0">
+                        <thead>
+                            <tr>
+                                <th>Selector</th>
+                                <th>Ejemplo</th>
+                                <th>Elige</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Universal</td>
+                                <td><code>*</code></td>
+                                <td>Todos los elementos</td>
+                            </tr>
+                            <tr>
+                                <td>Elemento</td>
+                                <td><code>p</code></td>
+                                <td>Todas las etiquetas <code>&lt;p&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td>Clase</td>
+                                <td><code>.texto</code></td>
+                                <td>Elementos con <code>class="texto"</code></td>
+                            </tr>
+                            <tr>
+                                <td>ID</td>
+                                <td><code>#titulo</code></td>
+                                <td>El elemento con <code>id="titulo"</code></td>
+                            </tr>
+                            <tr>
+                                <td>Agrupado</td>
+                                <td><code>h1, h2</code></td>
+                                <td>Varios a la vez</td>
+                            </tr>
+                            <tr>
+                                <td>Descendiente</td>
+                                <td><code>nav a</code></td>
+                                <td>Los <code>&lt;a&gt;</code> dentro de un <code>&lt;nav&gt;</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ERRORES COMUNES -->
+            <section class="col-12 col-md-6 caja6 bloque">
+                <h2>Errores comunes</h2>
+                <ul>
+                    <li>Olvidar el punto y coma <code class="text-white">;</code> al final de una declaración.</li>
+                    <li>Olvidar cerrar la llave <code class="text-white">}</code>.</li>
+                    <li>Escribir mal una propiedad, por ejemplo <code class="text-white">colour</code> en vez de <code class="text-white">color</code>.</li>
+                    <li>Olvidar el punto <code class="text-white">.</code> de las clases o el <code class="text-white">#</code> de los IDs.</li>
+                </ul>
+                <p class="mb-0">
+                    CSS no muestra errores: ignora la línea mal escrita. Si un
+                    estilo no se aplica, revisa primero la sintaxis.
+                </p>
+            </section>
+
+            <!-- EJEMPLO COMPLETO -->
+            <section class="col-12 col-md-6 caja10 bloque">
+                <h2>Ejemplo completo</h2>
+
+                <pre class="codigo">&lt;!-- HTML --&gt;
+&lt;h1 class="titulo"&gt;Mi primera página&lt;/h1&gt;
+&lt;p&gt;Aprendiendo CSS.&lt;/p&gt;
+
+/* CSS */
+.titulo {
+    color: blue;
+    text-align: center;
+}
+
+p {
+    font-size: 18px;
+}</pre>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
